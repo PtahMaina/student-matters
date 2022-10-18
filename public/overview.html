@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,300i,700"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Dekut | Student Matters Services</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav nav--tours">
+        <a href="#" class="nav__el">All tours</a>
+        <form class="nav__search">
+          <button class="nav__search-btn">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-search"></use>
+            </svg>
+          </button>
+          <input
+            type="text"
+            placeholder="Search tours"
+            class="nav__search-input"
+          />
+        </form>
+      </nav>
+      <div class="header__logo">
+        <img src="img/logo-white.png" alt="Natours logo" />
+      </div>
+      <nav class="nav nav--user">
+        <a href="#" class="nav__el">My bookings</a>
+        <a href="#" class="nav__el">
+          <img src="img/user.jpg" alt="User photo" class="nav__user-img" />
+          <span>Jonas</span>
+        </a>
+
+        <!-- <button class="nav__el">Log in</button>
+        <button class="nav__el nav__el--cta">Sign up</button> -->
+      </nav>
+    </header>
+    <header class="header">
+      <nav>
+        <div class="logo">
+          <img src="/img/dekut.jpeg" alt="DeKUT" />
+        </div>
+        <div class="log">
+          <h2>Dedan Kimathi University of Technology</h2>
+          <h4>Better Life Through Technology</h4>
+        </div>
+      </nav>
+      <div>
+        <nav>
+          <ul class="nav__links">
+            <li>
+              <a href="#"> Home </a>
+            </li>
+            <li>
+              <a href="#"> About </a>
+            </li>
+            <li>
+              <a href="#"> Contact </a>
+            </li>
+            <li>
+              <a href="#"> SignUp </a>
+            </li>
+            <li>
+              <a href="#"> LogOut </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <!-- <form class="Login">
+        <div>
+          <left> <h1>Student Matters Portal</h1> </left>
+          <left> <p>Please fill out the following fields to login:</p> </left>
+          <label>Email : </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="you@students.dkut.com"
+            name="username"
+            required
+          />
+          <label>Password : </label>
+          <input
+            type="password"
+            id="password"
+            placeholder="********"
+            name="password"
+            required
+          />
+          <button type="submit">Login</button> -->
+      <!-- <button type="submit">Forgot Password?</button> -->
+      <!-- </div>
+      </form>
+      -->
+
+      <div class="login-form">
+        <h2 class="heading-secondary ma-bt-lg">Log into your account</h2>
+        <form class="form form--login">
+          <div class="form__group">
+            <label class="form__label" for="email">Email address</label>
+            <input
+              class="form__input"
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              required="required"
+            />
+          </div>
+          <div class="form__group ma-bt-md">
+            <label class="form__label" for="password">Password</label>
+            <input
+              class="form__input"
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              required="required"
+              minlength="8"
+            />
+          </div>
+          <div class="form__group">
+            <button class="btn btn--green">Login</button>
+          </div>
+        </form>
+      </div>
+
+      <div>
+        <ul class="activities">
+          <h3>
+            <a href="#"> Deregistration Matters </a>
+          </h3>
+          <h3>
+            <a href="#"> Discontinuation Matters </a>
+          </h3>
+          <h3>
+            <a href="#"> Repeat year </a>
+          </h3>
+          <h3>
+            <a href="#"> Special Exams </a>
+          </h3>
+        </ul>
+      </div>
+
+      <form class="special">
+        <form>
+          <div class="info">
+            <top> <h2>DEDAN KIMATHI UNIVERTY OF TECHNOLOGY</h2></top>
+            <top> <h2>SCHOOL OF COMPUTER SCIECE AND IT</h2></top>
+            <top> <h4>STUDENT SERVICE REQUEST FORM</h4></top>
+            <label>DEPARTMENT:</label>
+            <input type="text" required />
+            <label>PROGRAMME:</label>
+            <input type="text" required />
+            <label>YEAR & SEMESTER OF STUDY:</label>
+            <input type="text" required />
+          </div>
+        </form>
+        <form>
+          <div class="reason">
+            <left><h3>SPECIAL EXAMINATIONS RREQUEST</h3></left>
+            <label
+              >Grounds for Special Examinations e.g(Financial, Medical,
+              Compassionate, Any other):</label
+            >
+            <input type="text" required />
+            <label>Year & Semester for Ordinary Examinations:</label>
+            <input type="text" required />
+            <label>Month & Year of Ordinary Examinations:</label>
+            <input type="text" required />
+          </div>
+          <div class="form__group">
+            <button class="btn btn--green">Sign up</button>
+          </div>
+        </form>
+        <form class="details">
+          <left><h3>INDICATE UNITS BELLOW & CATS/ASSIGNMENTS</h3></left>
+          <table style="width: 100%">
+            <tr>
+              <th>UNIT CODE</th>
+              <th>UNIT NAME</th>
+              <th>CATS/ASSIGNMENTS(e.g 2CATS, 2ASSIGN)</th>
+            </tr>
+            <tr>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+            </tr>
+            <tr>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+            </tr>
+            <tr>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+            </tr>
+            <tr>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+            </tr>
+            <tr>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+            </tr>
+            <tr>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+            </tr>
+            <tr>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+            </tr>
+            <tr>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+            </tr>
+            <tr>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+              <td><input type="text" required /></td>
+            </tr>
+          </table>
+          <div class="form__group">
+            <button class="btn btn--green">Submit</button>
+          </div>
+        </form>
+      </form>
+      <div class="login-form">
+        <h2 class="heading-secondary ma-bt-lg">Create your account</h2>
+        <form class="form form--signup">
+          <div class="form__group">
+            <label class="form__label" for="name">Your Name</label>
+            <input
+              class="form__input"
+              id="name"
+              type="text"
+              required="required"
+            />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="email">Email address</label>
+            <input
+              class="form__input"
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              required="required"
+            />
+          </div>
+          <div class="form__group ma-bt-md">
+            <label class="form__label" for="password">Password</label>
+            <input
+              class="form__input"
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              required="required"
+              minlength="8"
+            />
+          </div>
+          <div class="form__group ma-bt-md">
+            <label class="form__label" for="password-confirm"
+              >Confirm Password</label
+            >
+            <input
+              class="form__input"
+              id="password-confirm"
+              type="password"
+              placeholder="••••••••"
+              required="required"
+              minlength="8"
+            />
+          </div>
+          <div class="form__group">
+            <button class="btn btn--green">Sign up</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <div class="footer">
+      <div class="footer__logo">
+        <img src="img/dekut.jpeg" alt="DeKUT" />
+      </div>
+      <ul class="footer__nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Download apps</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <p class="footer__copyright">
+        &copy; by Peter Maina. All rights reserved.
+      </p>
+    </div>
+  </body>
+</html>
