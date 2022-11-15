@@ -1,5 +1,7 @@
 const User = require("../models/userModel");
 const AppError = require("../utils/catchAsync");
+const Booking = require("../models/bookingModel");
+const Exam = require("../models/specialModel");
 
 exports.getOverview = catchAsync(async (req, res, next) => {
   res.status(200).render("overview", { title: "Home" });
@@ -9,6 +11,12 @@ exports.getOverview = catchAsync(async (req, res, next) => {
 exports.getLoginForm = (req, res) => {
   res.status(200).render("login", {
     title: "Log into your account",
+  });
+};
+
+exports.getStaffLoginForm = (req, res) => {
+  res.status(200).render("staffLogin", {
+    title: "Log into your Staff account",
   });
 };
 
@@ -35,3 +43,17 @@ exports.getAccount = (req, res) => {
     title: "Your account",
   });
 };
+
+exports.getMyTours = catchAsync(async (req, res, next) => {
+  // 1) Find all bookings
+  const bookings = await Booking.find({ user: req.user.id });
+
+  // 2) Find tours with the returned IDs
+  const tourIDs = bookings.map((el) => el.special);
+  const tours = await Exam.find({ _id: { $in: tourIDs } });
+
+  res.status(200).render("overview", {
+    title: "My Specials",
+    specials,
+  });
+});

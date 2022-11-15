@@ -13,10 +13,11 @@ export const special = async (
   unitName,
   catsAssgnDone
 ) => {
+  console.log(regNo);
   try {
     const res = await axios({
       method: "POST",
-      url: "/api/v1/exam/special",
+      url: "/api/v1/exams/special",
       data: {
         regNo,
         department,
@@ -32,6 +33,7 @@ export const special = async (
       credentials: "include",
       withCredentials: true,
     });
+    console.log(res);
 
     if (res.data.status === "success") {
       showAlert("success", "Information Submitted Successfully");

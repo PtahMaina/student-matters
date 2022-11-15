@@ -2,13 +2,19 @@ extends base
 
 block content
     main.main
-        div
-            .activities
-                h3
-                    a(href='#')  Deregistration Matters 
-                h3
-                    a(href='#')  Discontinuation Matters 
-                h3
-                    a(href='#')  Repeat year 
-                h3
-                    a(href='/special')  Special Exams 
+        .dropdown
+            button.dropbtn  Examination Matters
+            .dropdown-content
+                a(href='#')  Supplementary Exams 
+                a(href='/special')  Special Exams 
+        .dropdown
+            button.dropbtn  Course Progression Matters
+            .dropdown-content
+                a(href='#')  Deregistration Matters 
+                a(href='#')  Discontinuation Matters 
+                a(href='#')  Repeat year
+        .dropdown 
+            button.dropbtn  Inter-Faculty Transfer Matters
+            .dropdown-content
+                a(href='#')  Request Transfer 
+

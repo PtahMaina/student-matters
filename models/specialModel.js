@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const slugify = require("slugify");
 
 const specialSchema = new mongoose.Schema({
   regNo: {
@@ -43,7 +44,6 @@ const specialSchema = new mongoose.Schema({
   unitCode: {
     type: String,
     required: [true, "Please Tell Us The Unit Code"],
-    unique: true,
   },
   unitName: {
     type: String,
@@ -57,15 +57,47 @@ const specialSchema = new mongoose.Schema({
     ],
   },
   appliedAt: Date,
+  slug: String,
 });
 
-specialSchema.pre("save", function (next) {
-  if (!this.isModified("unitName") || this.isNew) return next();
+specialSchema.pre(
+  "save",
+  function (next) {
+    if (!this.isModified("unitName") || this.isNew) return next();
 
-  this.appliedAt = Date.now() - 1000;
+    this.appliedAt = Date.now() - 1000;
+    next();
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+
+specialSchema.pre(/^find/, function (next) {
+  this.populate("user").populate({
+    path: "exam",
+    select: "regNo",
+  });
+  next();
+});
+
+// DOCUMENT MIDDLEWARE: runs before .save() and .create()
+specialSchema.pre("save", function (next) {
+  this.slug = slugify(this.unitName, { lower: true });
   next();
 });
 
 const Exam = mongoose.model("Exam", specialSchema);
 
 module.exports = Exam;
+
+specialSchema.post("save", function (next) {
+  Exam.aggregate([
+    { $match: { department: "CS &IT" } },
+    { $sort: { regNo: -1 } },
+    { $project: { _id: 0, regNo: 1, unitCode: 1, unitName: 1 } },
+    { $out: "bookings" },
+  ]);
+  next();
+});

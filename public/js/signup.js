@@ -7,6 +7,7 @@ export const signup = async (name, email, password, passwordConfirm) => {
       method: "POST",
       url: "/api/v1/users/signup",
       data: {
+        // regNo,
         name,
         email,
         password,

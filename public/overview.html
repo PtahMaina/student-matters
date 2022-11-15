@@ -37,7 +37,7 @@
         <a href="#" class="nav__el">My bookings</a>
         <a href="#" class="nav__el">
           <img src="img/user.jpg" alt="User photo" class="nav__user-img" />
-          <span>Jonas</span>
+          <span>Peter</span>
         </a>
 
         <!-- <button class="nav__el">Log in</button>
@@ -107,6 +107,15 @@
         <h2 class="heading-secondary ma-bt-lg">Log into your account</h2>
         <form class="form form--login">
           <div class="form__group">
+            <label class="form__label" for="regNo">Your RegNo</label>
+            <input
+              class="form__input"
+              id="regNo"
+              type="text"
+              required="required"
+            />
+          </div>
+          <div class="form__group">
             <label class="form__label" for="email">Email address</label>
             <input
               class="form__input"
@@ -132,8 +141,27 @@
           </div>
         </form>
       </div>
+      <div class="dropdown">
+        <button class="dropbtn">Deregistration Matters</button>
+        <div class="dropdown-content">
+          <ul class="activities">
+            <h3>
+              <a href="#"> Deregistration Matters </a>
+            </h3>
+            <h3>
+              <a href="#"> Discontinuation Matters </a>
+            </h3>
+            <h3>
+              <a href="#"> Repeat year </a>
+            </h3>
+            <h3>
+              <a href="#"> Special Exams </a>
+            </h3>
+          </ul>
+        </div>
+      </div>
 
-      <div>
+      <!-- <div>
         <ul class="activities">
           <h3>
             <a href="#"> Deregistration Matters </a>
@@ -148,20 +176,20 @@
             <a href="#"> Special Exams </a>
           </h3>
         </ul>
-      </div>
+      </div> -->
 
-      <form class="special">
-        <form>
+      <div class="special-form">
+        <form class="form form--special">
           <div class="info">
             <top> <h2>DEDAN KIMATHI UNIVERTY OF TECHNOLOGY</h2></top>
             <top> <h2>SCHOOL OF COMPUTER SCIECE AND IT</h2></top>
             <top> <h4>STUDENT SERVICE REQUEST FORM</h4></top>
             <label>DEPARTMENT:</label>
-            <input type="text" required />
+            <input class="form__input" id="dep" type="text" required />
             <label>PROGRAMME:</label>
-            <input type="text" required />
+            <input class="form__input" id="prog" type="text" required />
             <label>YEAR & SEMESTER OF STUDY:</label>
-            <input type="text" required />
+            <input class="form__input" id="sem" type="text" required />
           </div>
         </form>
         <form>
@@ -171,14 +199,11 @@
               >Grounds for Special Examinations e.g(Financial, Medical,
               Compassionate, Any other):</label
             >
-            <input type="text" required />
+            <input type="text" id="reason" required />
             <label>Year & Semester for Ordinary Examinations:</label>
-            <input type="text" required />
+            <input type="text" id="year" required />
             <label>Month & Year of Ordinary Examinations:</label>
-            <input type="text" required />
-          </div>
-          <div class="form__group">
-            <button class="btn btn--green">Sign up</button>
+            <input type="text" id="month" required />
           </div>
         </form>
         <form class="details">
@@ -190,9 +215,9 @@
               <th>CATS/ASSIGNMENTS(e.g 2CATS, 2ASSIGN)</th>
             </tr>
             <tr>
-              <td><input type="text" required /></td>
-              <td><input type="text" required /></td>
-              <td><input type="text" required /></td>
+              <td><input type="text" id="unitcode" required /></td>
+              <td><input type="text" id="unitname" required /></td>
+              <td><input type="text" id="catsassg" required /></td>
             </tr>
             <tr>
               <td><input type="text" required /></td>
@@ -239,7 +264,7 @@
             <button class="btn btn--green">Submit</button>
           </div>
         </form>
-      </form>
+      </div>
       <div class="login-form">
         <h2 class="heading-secondary ma-bt-lg">Create your account</h2>
         <form class="form form--signup">
@@ -248,6 +273,15 @@
             <input
               class="form__input"
               id="name"
+              type="text"
+              required="required"
+            />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="regNo">Your RegNo</label>
+            <input
+              class="form__input"
+              id="regNo"
               type="text"
               required="required"
             />
