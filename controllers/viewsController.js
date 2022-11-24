@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
 const AppError = require("../utils/catchAsync");
-const Booking = require("../models/bookingModel");
+const Booking = require("../models/statusModel");
 const Exam = require("../models/specialModel");
 
 exports.getOverview = catchAsync(async (req, res, next) => {
@@ -49,8 +49,8 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
   const bookings = await Booking.find({ user: req.user.id });
 
   // 2) Find tours with the returned IDs
-  const tourIDs = bookings.map((el) => el.special);
-  const tours = await Exam.find({ _id: { $in: tourIDs } });
+  const examIDs = bookings.map((el) => el.special);
+  const exams = await Exam.find({ _id: { $in: examIDs } });
 
   res.status(200).render("overview", {
     title: "My Specials",

@@ -23,6 +23,11 @@ const bookingSchema = new mongoose.Schema({
     ref: "Exam",
     require: [true, "Booking must have a price."],
   },
+  status: {
+    type: String,
+    enum: ["pending", "approved", "disapproved"],
+    default: "pending",
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
@@ -36,6 +41,35 @@ bookingSchema.pre(/^find/, function (next) {
   });
   next();
 });
+
+// catchAsync(async (req, res, next) => {
+//   const newBooking = await Booking.createView("bookings", "exams", [
+//     {
+//       $lookup: {
+//         from: "users",
+//         localField: "name",
+//         foreignField: "name",
+//         as: "userDocs",
+//       },
+//     },
+//     {
+//       $project: {
+//         _id: 0,
+//         unitCode: "$unitCode",
+//         unitName: "$unitName",
+//         appliedAt: "$appliedAt",
+//         status: "$userDocs.status",
+//       },
+//     },
+//     { $unwind: "$status" },
+//   ]);
+//   res.status(201).json({
+//     status: "success",
+//     data: {
+//       newBooking,
+//     },
+//   });
+// });
 
 const Booking = mongoose.model("Booking", bookingSchema);
 

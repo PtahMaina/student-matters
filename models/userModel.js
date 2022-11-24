@@ -2,13 +2,9 @@ const crypto = require("crypto");
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
+const Exam = require("./specialModel");
 
 const userSchema = new mongoose.Schema({
-  // regNo: {
-  //   type: String,
-  //   reqiured: [true, "You Must Include Your Reg No."],
-  //   unique: true,
-  // },
   name: {
     type: String,
     required: [true, "Please tell us your name!"],
@@ -20,7 +16,10 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, "Please provide a valid email"],
   },
-  photo: String,
+  photo: {
+    type: String,
+    default: "default.jpg",
+  },
   role: {
     type: String,
     enum: ["student", "dean", "cod", "admin"],
@@ -117,3 +116,12 @@ userSchema.methods.createPasswordResetToken = function () {
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
+userSchema.post("save", function (next) {
+  User.aggregate([
+    { $project: { _id: 0, name: 1 } },
+    { $addFields: { name: 1 } },
+    { $merge: { into: "bookings" } },
+    { $out: "bookings" },
+  ]);
+  next();
+});

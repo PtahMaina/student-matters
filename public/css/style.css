@@ -399,7 +399,7 @@ h4 {
   transform: translateX(-50%);
   z-index: 9999;
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1rem;
   font-weight: 400;
   text-align: center;
   border-bottom-left-radius: 5px;
@@ -817,4 +817,50 @@ h4 {
   text-transform: uppercase;
   color: #f2f2f2;
   border-bottom: 1px solid currentColor;
+}
+
+.content {
+  margin: 20px;
+}
+
+table {
+  width: 100%;
+  border: 1px solid #fff;
+  border-collapse: collapse;
+  border-radius: 8px;
+}
+
+tbody {
+  background-color: #a5b1c2;
+}
+
+th,
+td {
+  text-align: left;
+  text-transform: capitalize;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+th {
+  padding: 8px 10px;
+  height: 48px;
+  background-color: #808e9b;
+}
+
+td {
+  padding: 6px 8px;
+  height: 40px;
+}
+
+tbody tr:hover {
+  background-color: #778ca3;
+  cursor: pointer;
+}
+
+@media (max-width: 540px) {
+  .content {
+    overflow: auto;
+    max-width: 100%;
+  }
 }

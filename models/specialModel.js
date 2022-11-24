@@ -56,37 +56,40 @@ const specialSchema = new mongoose.Schema({
       "Please Tell Us How Many Cats And Assignments You Have Done",
     ],
   },
-  appliedAt: Date,
-  slug: String,
+  appliedAt: {
+    type: Date,
+    default: Date.now(),
+  },
+  // slug: String,
 });
 
-specialSchema.pre(
-  "save",
-  function (next) {
-    if (!this.isModified("unitName") || this.isNew) return next();
+// specialSchema.pre(
+//   "save",
+//   function (next) {
+//     if (!this.isModified("regNo") || this.isNew) return next();
 
-    this.appliedAt = Date.now() - 1000;
-    next();
-  },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
-);
+//     this.appliedAt = Date.now() - 1000;
+//     next();
+//   },
+//   {
+//     toJSON: { virtuals: true },
+//     toObject: { virtuals: true },
+//   }
+// );
 
 specialSchema.pre(/^find/, function (next) {
-  this.populate("user").populate({
-    path: "exam",
-    select: "regNo",
+  this.populate("department").populate({
+    path: "regNo",
+    select: "grounds",
   });
   next();
 });
 
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
-specialSchema.pre("save", function (next) {
-  this.slug = slugify(this.unitName, { lower: true });
-  next();
-});
+// specialSchema.pre("save", function (next) {
+//   this.slug = slugify(this.unitName, { lower: true });
+//   next();
+// });
 
 const Exam = mongoose.model("Exam", specialSchema);
 
@@ -95,8 +98,10 @@ module.exports = Exam;
 specialSchema.post("save", function (next) {
   Exam.aggregate([
     { $match: { department: "CS &IT" } },
-    { $sort: { regNo: -1 } },
+    // { $sort: { regNo: -1 } },
     { $project: { _id: 0, regNo: 1, unitCode: 1, unitName: 1 } },
+    { $addFields: { regNo: 1, unitCode: 1, unitName: 1 } },
+    { $merge: { into: "bookings" } },
     { $out: "bookings" },
   ]);
   next();

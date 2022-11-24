@@ -45,7 +45,7 @@ exports.getAllBookings = catchAsync(async (req, res, next) => {
   let data = await Exam.aggregate([
     { $match: { department: "CS &IT" } },
     { $sort: { regNo: -1 } },
-    { $project: { _id: 0, regNo: 1, unitCode: 1, unitName: 1 } },
+    { $project: { _id: 1, regNo: 1, unitCode: 1, unitName: 1 } },
     {
       $group: {
         _id: { regNo: "$regNo", unitCode: "$unitCode", unitName: "$unitName" },
@@ -53,5 +53,23 @@ exports.getAllBookings = catchAsync(async (req, res, next) => {
     },
   ]);
   // res.status(200).json({ status: "success", results: data.length, data });
-  res.status(200).render("specialList");
+  res.status(200).render("specialList", "data");
 });
+
+// exports.getAllBookings = catchAsync(async (req, res, next) => {
+//   let data = await Exam.find(
+//     { department: { $regex: "CS &IT" } },
+//     {
+//       group: {
+//         _id: {
+//           unitCode: "$unitCode",
+//           unitName: "$unitName",
+//           appliedAt: "$appliedAt",
+//         },
+//       },
+//     }
+//   );
+//   // data.map((data) => data.regNo, data.unitCode, data.unitName);
+//   res.status(200).json({ status: "success", results: data.length, data });
+//   // res.status(200).render("specialList", data);
+// });

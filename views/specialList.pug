@@ -1,17 +1,33 @@
 extends base
 
 block content
-    thead
-     tr
-      th RegNo
-      th Name
-      th Request 
-        
-    tbody 
-    if Exam
-    each Exam in exams
-      tr
-       td #{Exam.regNo}
-       td #{Exam.unitCode}
-       td #{Exam.unitName}
+ .content
+  table
+    tr
+      th No
+      th name
+      th regNo
+      th email
+      th number
+      th country
+    tr
+      td 1
+      td #{exam.regNo}
+      td #{exam.unitCode}
+      td #{exam.unitName}
+      td #{exam.grounds}
+    tr
+      td 2
+      td Martin
+      td 28
+      td Martin@mail.com
+      td +987456321
+      td UK
+    tr
+      td 3
+      td John
+      td 32
+      td John@mail.com
+      td +7412589633
+      td Brazil
         

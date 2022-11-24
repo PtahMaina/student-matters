@@ -18,7 +18,7 @@ block content
 
         - if (user.role === 'admin', 'cod', 'dean')
           .admin-nav
-            h5.admin-nav__heading Admin
+            h5.admin-nav__heading #{user.role}
             ul.side-nav
               +navItem('#', 'Manage specials', 'map')
               +navItem('#', 'Manage users', 'users')
