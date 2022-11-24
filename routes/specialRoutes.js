@@ -12,7 +12,7 @@ router.post(
   "/special",
   authController.protect,
   specialController.special,
-  bookingController.booking
+  bookingController.bookings
 );
 
 module.exports = router;

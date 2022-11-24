@@ -32,7 +32,7 @@ const Exam = require(".././models/specialModel");
 //   });
 // });
 
-exports.booking = catchAsync(async (req, res, next) => {
+exports.bookings = catchAsync(async (req, res, next) => {
   const newBooking = await Exam.aggregate([
     {
       $match: {
@@ -44,6 +44,8 @@ exports.booking = catchAsync(async (req, res, next) => {
     {
       $merge: {
         into: "bookings",
+        whenMatched: "replace",
+        whenNotMatched: "insert",
       },
     },
   ]);

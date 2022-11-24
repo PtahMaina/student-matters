@@ -15,7 +15,7 @@ router
   .route("/")
   // .get(bookingController.getAllBookings)
   .get(specialController.getAllBookings)
-  .post(bookingController.createBooking);
+  .post(bookingController.bookings);
 
 router
   .route("/:id")
