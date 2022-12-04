@@ -1,0 +1,49 @@
+extends base
+
+block content
+ h1 DEDAN KIMATHI UNIVERSITY
+    h2 SCHOOL OF COMPUTER SCIENCE AND IT
+    h3 STUDENT SERVICE REQUEST FORM
+    .form.leave-form
+      form.form.form--leave
+        .content
+          table
+            h4 SECTION A: APPLICANT'S IDENTIFICATION DETAILS.
+              tr
+                th Name
+                th RegNo
+                th Session(eg May-August 2022)
+                th Type of Sponsorship(Gok/SSP)
+                th Phone No.
+              tr
+                td
+                  input#name(type='text' required='')
+                td
+                  input#regNo(type='text' required='')
+                td
+                  input#session(type='text' required='')
+                td
+                  input#sponsorship(type='text' required='')
+                td
+                  input#phone(type='text' required='')
+          table
+            h4 SECTION B: ACADEMIC LEAVE/RE-ADMISSION REQUEST
+              tr
+                th Duration of Leave(eg 1 Academic Year/1 Sem)
+                th Period of Leave in Months(eg Jan 2023-April 2023)
+                th Resumption Date, Year and Sem(eg May, 2023 for 2.2)
+                th No. of CATs Done(current Sem)
+                th No. of Assignments Done(current sem)
+              tr
+                td
+                  input#leaveDuration(type='text' required='')
+                td
+                  input#leavePeriod(type='text' required='')
+                td
+                  input#resumption(type='text' required='')
+                td
+                  input#catsDone(type='text' required='')
+                td
+                  input#assignDone(type='text' required='')
+        .form__group
+          button.btn.btn--green Submit

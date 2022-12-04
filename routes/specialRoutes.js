@@ -14,5 +14,10 @@ router.post(
   specialController.special,
   bookingController.bookings
 );
+// router.get(authController.protect, specialController.getAllBookings);
+
+router.get("/for-admin", authController.protect, specialController.getForAdmin);
+
+router.route("/").get(authController.protect, specialController.getAllExams);
 
 module.exports = router;

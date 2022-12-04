@@ -16,14 +16,35 @@ block content
           +navItem('/my-specials', 'My bookings', 'briefcase')
           +navItem('#', 'My reviews', 'star')
 
-        - if (user.role === 'admin', 'cod', 'dean')
+        - if (user.role === 'admin')
           .admin-nav
-            h5.admin-nav__heading #{user.role}
+            h5.admin-nav__heading admin
+            ul.side-nav
+              +navItem('#', 'Manage specials', 'map')
+              +navItem('/users', 'Manage users', 'users')
+              +navItem('/bookings', 'Manage bookings', 'briefcase')
+            .form__group.right
+              button.btn.btn--small.btn--green Update Bookings
+            .form__group.right
+              button.btn.btn--small.btn--green Approve
+            .form__group.right
+              button.btn.btn--small.btn--green Disapprove
+        
+        -else if (user.role === 'cod')
+          .admin-nav
+            h5.admin-nav__heading cod
             ul.side-nav
               +navItem('#', 'Manage specials', 'map')
               +navItem('#', 'Manage users', 'users')
               +navItem('#', 'Manage bookings', 'briefcase')
 
+        - else if (user.role === 'dean')
+          .admin-nav
+            h5.admin-nav__heading dean
+            ul.side-nav
+              +navItem('#', 'Manage specials', 'map')
+              +navItem('#', 'Manage users', 'users')
+              +navItem('#', 'Manage bookings', 'briefcase')
       .user-view__content
         .user-view__form-container
           h2.heading-secondary.ma-bt-md Your account settings

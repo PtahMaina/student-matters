@@ -3,22 +3,26 @@ const validator = require("validator");
 const slugify = require("slugify");
 
 const specialSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "You Must Tell Us You Name"],
+  },
   regNo: {
     type: String,
     reqiured: [true, "You Must Include Your Reg No."],
     unique: true,
   },
-  department: {
+  session: {
     type: String,
     reqiured: [true, "Please Type Your department here"],
   },
-  programme: {
+  sponsorship: {
     type: String,
     required: [true, "Please Type Your Course here"],
   },
-  year: {
-    type: String,
-    required: [true, "Please Type Your Year of Study And Semester"],
+  phone: {
+    type: Number,
+    required: [true, "Please Tell Us Your Phone Number"],
   },
   grounds: {
     type: String,
@@ -27,14 +31,14 @@ const specialSchema = new mongoose.Schema({
       "Please Tell Us the Reason Why You Are Applying For Special Exams",
     ],
   },
-  yearSemExamTime: {
+  yearSem: {
     type: String,
     required: [
       true,
       "Please Tell Us The Year And Sem For Which You Are Applying Special Exam",
     ],
   },
-  monthYearOfExam: {
+  monthYear: {
     type: String,
     required: [
       true,
@@ -56,11 +60,16 @@ const specialSchema = new mongoose.Schema({
       "Please Tell Us How Many Cats And Assignments You Have Done",
     ],
   },
+  status: {
+    type: String,
+    enum: ["pending", "approved", "disapproved"],
+    default: "pending",
+  },
   appliedAt: {
     type: Date,
     default: Date.now(),
   },
-  // slug: String,
+  slug: String,
 });
 
 // specialSchema.pre(
@@ -78,31 +87,20 @@ const specialSchema = new mongoose.Schema({
 // );
 
 specialSchema.pre(/^find/, function (next) {
-  this.populate("department").populate({
+  this.populate("name").populate({
     path: "regNo",
     select: "grounds",
+    sort: "regNo",
   });
   next();
 });
 
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
-// specialSchema.pre("save", function (next) {
-//   this.slug = slugify(this.unitName, { lower: true });
-//   next();
-// });
+specialSchema.pre("save", function (next) {
+  this.slug = slugify(this.unitName, { lower: true });
+  next();
+});
 
 const Exam = mongoose.model("Exam", specialSchema);
 
 module.exports = Exam;
-
-specialSchema.post("save", function (next) {
-  Exam.aggregate([
-    { $match: { department: "CS &IT" } },
-    // { $sort: { regNo: -1 } },
-    { $project: { _id: 0, regNo: 1, unitCode: 1, unitName: 1 } },
-    { $addFields: { regNo: 1, unitCode: 1, unitName: 1 } },
-    { $merge: { into: "bookings" } },
-    { $out: "bookings" },
-  ]);
-  next();
-});

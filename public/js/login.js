@@ -27,6 +27,58 @@ export const login = async (email, password) => {
   }
 };
 
+export const studentLogin = async (email, password) => {
+  console.log(email, password);
+  try {
+    const res = await axios({
+      method: "POST",
+      url: "/api/v1/users/student-login",
+      data: {
+        email,
+        password,
+      },
+      credentials: "include",
+      withCredentials: true,
+    });
+    console.log(res);
+
+    if (res.data.status === "success") {
+      showAlert("success", "Logged in successfully!");
+      window.setTimeout(() => {
+        location.assign("/activities");
+      }, 1500);
+    }
+  } catch (err) {
+    showAlert("error", err.response.data.message);
+  }
+};
+
+export const staffLogin = async (email, password) => {
+  console.log(email, password);
+  try {
+    const res = await axios({
+      method: "POST",
+      url: "/api/v1/users/staff-login",
+      data: {
+        email,
+        password,
+      },
+      credentials: "include",
+      withCredentials: true,
+    });
+    console.log(res);
+
+    if (res.data.status === "success") {
+      showAlert("success", "Logged in successfully!");
+      window.setTimeout(() => {
+        location.assign("/activities");
+      }, 1500);
+    }
+  } catch (err) {
+    showAlert("error", err.response.data.message);
+  }
+};
+
 export const logout = async () => {
   try {
     const res = await axios({

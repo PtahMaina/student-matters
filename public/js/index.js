@@ -1,8 +1,10 @@
 import "@babel/polyfill";
 import { login, logout } from "./login";
 import { signup } from "./signup";
-import { special } from "./special";
+import { myFunction, special } from "./special";
 import { updateSettings } from "./updateSettings";
+import { approve } from "./approve";
+import { leave } from "./leave";
 
 //DOM ELEMENTS
 const loginForm = document.querySelector(".login-form");
@@ -13,6 +15,12 @@ const userPasswordForm = document.querySelector(".form-user-password");
 const signupForm = document.querySelector(".form--signup");
 const submit = document.querySelector(".btn--green");
 const specialForm = document.querySelector(".form--special");
+const leaveForm = document.querySelector(".form--leave");
+const approveBtn = document.querySelector(".button4");
+const loginStudent = document.querySelector(".button1");
+const loginStaff = document.querySelector(".button2");
+const buttonRow = document.querySelector(".button3");
+const table = document.getElementById("myTable");
 
 // //DELEGATION
 if (loginForm)
@@ -24,13 +32,22 @@ if (loginForm)
     login(email, password);
   });
 
-// if (staffLoginForm)
-//   loginForm.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     const email = document.getElementById("email").value;
-//     const password = document.getElementById("password").value;
-//     login(email, password);
-//   });
+if (loginStudent)
+  loginStudent.addEventListener("submit", (e) => {
+    e.preventDefault();
+    // const regNo = document.getElementById("regNo").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    login(email, password);
+  });
+
+if (loginStaff)
+  loginStaff.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    login(email, password);
+  });
 
 if (logOutBtn) logOutBtn.addEventListener("click", logout);
 
@@ -49,24 +66,26 @@ if (signupForm) {
 if (specialForm) {
   specialForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    const name = document.getElementById("name").value;
     const regNo = document.getElementById("regNo").value;
-    const department = document.getElementById("department").value;
-    const programme = document.getElementById("programme").value;
-    const year = document.getElementById("year").value;
+    const session = document.getElementById("session").value;
+    const sponsorship = document.getElementById("sponsorship").value;
+    const phone = document.getElementById("phone").value;
     const grounds = document.getElementById("grounds").value;
-    const yearSemExamTime = document.getElementById("yearSemExamTime").value;
-    const monthYearOfExam = document.getElementById("monthYearOfExam").value;
+    const yearSem = document.getElementById("yearSem").value;
+    const monthYear = document.getElementById("monthYear").value;
     const unitCode = document.getElementById("unitCode").value;
     const unitName = document.getElementById("unitName").value;
     const catsAssgnDone = document.getElementById("catsAssgnDone").value;
     special(
+      name,
       regNo,
-      department,
-      programme,
-      year,
+      session,
+      sponsorship,
+      phone,
       grounds,
-      yearSemExamTime,
-      monthYearOfExam,
+      yearSem,
+      monthYear,
       unitCode,
       unitName,
       catsAssgnDone
@@ -104,3 +123,35 @@ if (userPasswordForm)
     document.getElementById("password").value = "";
     document.getElementById("password-confirm").value = "";
   });
+
+if (leaveForm) {
+  leaveForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const regNo = document.getElementById("regNo").value;
+    const session = document.getElementById("session").value;
+    const sponsorship = document.getElementById("sponsorship").value;
+    const phone = document.getElementById("phone").value;
+    const leaveDuration = document.getElementById("leaveDuration").value;
+    const leavePeriod = document.getElementById("leavePeriod").value;
+    const resumption = document.getElementById("resumption").value;
+    const catsDone = document.getElementById("catsDone").value;
+    const assignDone = document.getElementById("assignDone").value;
+    leave(
+      name,
+      regNo,
+      session,
+      sponsorship,
+      phone,
+      leaveDuration,
+      leavePeriod,
+      resumption,
+      catsDone,
+      assignDone
+    );
+  });
+}
+
+// if (approveBtn) approveBtn.addEventListener("click", approve);
+
+if (buttonRow) buttonRow.addEventListener("click", myFunction);

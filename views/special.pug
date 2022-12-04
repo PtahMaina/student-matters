@@ -2,44 +2,62 @@ extends base
 
 block content
   main.main
-    .special-form
-      h2.heading-secondary.ma-bt-lg DEDAN KIMATHI UNIVERSITY OF TECHNOLOGY
-      h2.heading-secondary.ma-bt-lg SCHOOL OF COMPUTER SCIENCE AND IT
-      h4.STUDENT SERVICE REQUEST FORM
+    h1 DEDAN KIMATHI UNIVERSITY
+    h2 SCHOOL OF COMPUTER SCIENCE AND IT
+    h3 STUDENT SERVICE REQUEST FORM
+    div
+    .form.special-form
       form.form.form--special
-        label RegNo:
-        input#regNo.form__input(type='text' required='')
-        label DEPARTMENT:
-        input#department.form__input(type='text' required='')
-        label PROGRAMME:
-        input#programme.form__input(type='text' required='')
-        label YEAR &amp; SEMESTER OF STUDY:
-        input#year.form__input(type='text' required='')
-        left
-          h3 SPECIAL EXAMINATIONS RREQUEST
-        label
-          | Grounds for Special Examinations e.g(Financial, Medical,
-          | Compassionate, Any other):
-        input#grounds.form__input(type='text' required='')
-        label Year &amp; Semester for Ordinary Examinations:
-        input#yearSemExamTime.form__input(type='text' required='')
-        label Month &amp; Year of Ordinary Examinations:
-        input#monthYearOfExam.form__input(type='text' required='')
-        
-        left
-          h3 INDICATE UNITS BELLOW &amp; CATS/ASSIGNMENTS
-        table(style='width: 100%')
-          tr
-            th UNIT CODE
-            th UNIT NAME
-            th CATS/ASSIGNMENTS(e.g 2CATS, 2ASSIGN)
-          tr
-            td
-              input#unitCode(type='text' required='')
-            td
-              input#unitName(type='text' required='')
-            td
-              input#catsAssgnDone(type='text' required='')
-          
-        .form__group
-          button.btn.btn--green Submit
+        .content
+          table
+            h4 SECTION A: APPLICANT'S IDENTIFICATION DETAILS.
+              tr
+                th Name
+                th RegNo
+                th Session(eg May-August 2022)
+                th Type of Sponsorship(Gok/SSP)
+                th Phone No.
+              tr
+                td
+                  input#name(type='text' required='')
+                td
+                  input#regNo(type='text' required='')
+                td
+                  input#session(type='text' required='')
+                td
+                  input#sponsorship(type='text' required='')
+                td
+                  input#phone(type='text' required='')
+          table
+            h4 SECTION B: SPECIAL EXAMINATION REQUEST
+            tr
+              th GROUNDS FOR SPECIAL EXAMINATION(financial, medical, Conpassionate)
+              th Year and Sem for Ordidnary Exam
+              th Month and Year of Ordinary Exam(Dec 2022)
+            tr
+              td
+                input#grounds(type='text' required='')
+              td
+                input#yearSem(type='text' required='')
+              td
+                input#monthYear(type='text' required='')
+          table#myTable
+            h4 SECTION C: INDICATE UNITS BELOW AND CATS/ASSIGNMENTS DONE.
+            tr
+              th UNIT CODE
+              th UNIT NAME
+              th CATS/ASSIGNMENTS(1 CAT, 2 ASSIGN)
+            tr
+              td
+                input#unitCode(type='text' required='')
+              td
+                input#unitName(type='text' required='')
+              td
+                input#catsAssgnDone(type='text' required='')
+              
+          button3(type='button') Add row
+
+
+                
+          .form__group
+            button.btn.btn--green Submit

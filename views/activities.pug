@@ -2,19 +2,23 @@ extends base
 
 block content
     main.main
-        .dropdown
-            button.dropbtn  Examination Matters
-            .dropdown-content
-                a(href='#')  Supplementary Exams 
-                a(href='/special')  Special Exams 
-        .dropdown
-            button.dropbtn  Course Progression Matters
-            .dropdown-content
-                a(href='#')  Deregistration Matters 
-                a(href='#')  Discontinuation Matters 
-                a(href='#')  Repeat year
-        .dropdown 
-            button.dropbtn  Inter-Faculty Transfer Matters
-            .dropdown-content
-                a(href='#')  Request Transfer 
-
+        .form.special-form
+            - if (user.role === 'student')
+                .dropdown
+                    button.dropbtn  Examination Matters
+                    .dropdown-content
+                        a(href='#')  Supplementary Exams 
+                        a(href='/special')  Special Exams 
+                .dropdown
+                    button.dropbtn  Course Progression Matters
+                    .dropdown-content
+                        a(href='/leave')  Request Leave
+                        a(href='#')  Discontinuation Matters 
+                        a(href='#')  Repeat year
+                .dropdown 
+                    button.dropbtn  Inter-Faculty Transfer Matters
+                    .dropdown-content
+                        a(href='#')  Request Transfer 
+            - if (user.role === 'admin')
+                a.buttons1(href='/api/v1/exams/for-admin') Show Specials
+                a.buttons1(href='/api/v1/exams') Show Specials

@@ -10,6 +10,11 @@ router.get("/", authController.isLoggedIn, viewsController.getOverview);
 router.get("/login", authController.isLoggedIn, viewsController.getLoginForm);
 router.get("/signup", authController.isLoggedIn, viewsController.getSignUpForm);
 router.get(
+  "/student-login",
+  authController.isLoggedIn,
+  viewsController.getStudentLoginForm
+);
+router.get(
   "/staff-login",
   authController.isLoggedIn,
   viewsController.getStaffLoginForm
@@ -21,7 +26,14 @@ router.get(
   viewsController.getActivities
 );
 
+router.get("/staff", authController.protect, viewsController.getStaff);
+
 router.get("/special", authController.protect, viewsController.getSpecial);
+router.get("/leave", authController.protect, viewsController.getLeave);
 router.get("/me", authController.protect, viewsController.getAccount);
-router.get("/my-specials", authController.protect, viewsController.getMyTours);
+router.get(
+  "/my-specials",
+  authController.protect,
+  viewsController.getMyBookings
+);
 module.exports = router;

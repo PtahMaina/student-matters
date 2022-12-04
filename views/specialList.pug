@@ -4,30 +4,16 @@ block content
  .content
   table
     tr
-      th No
+      th Id
       th name
       th regNo
-      th email
-      th number
-      th country
+      th unit code
+      th unit name
+      th status
     tr
-      td 1
+      td #{exam._id}
+      td #{exam.name}
       td #{exam.regNo}
       td #{exam.unitCode}
       td #{exam.unitName}
-      td #{exam.grounds}
-    tr
-      td 2
-      td Martin
-      td 28
-      td Martin@mail.com
-      td +987456321
-      td UK
-    tr
-      td 3
-      td John
-      td 32
-      td John@mail.com
-      td +7412589633
-      td Brazil
-        
+      td #{exam.status}

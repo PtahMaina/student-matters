@@ -15,12 +15,10 @@ const bookingSchema = new mongoose.Schema({
   },
   unitCode: {
     type: String,
-    ref: "Exam",
     require: [true, "Booking must have a price."],
   },
   unitName: {
     type: String,
-    ref: "Exam",
     require: [true, "Booking must have a price."],
   },
   status: {
@@ -28,15 +26,15 @@ const bookingSchema = new mongoose.Schema({
     enum: ["pending", "approved", "disapproved"],
     default: "pending",
   },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now(),
+  // },
 });
 
 bookingSchema.pre(/^find/, function (next) {
-  this.populate("user").populate({
-    path: "exam",
+  this.populate("_id").populate({
+    path: "regNo",
     select: "regNo",
   });
   next();
