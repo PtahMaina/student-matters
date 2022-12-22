@@ -54,6 +54,10 @@ const leaveSchema = new mongoose.Schema({
     enum: ["pending", "approved", "disapproved"],
     default: "pending",
   },
+  matter: {
+    type: String,
+    default: "Leave Request",
+  },
 });
 
 const Leave = mongoose.model("Leave", leaveSchema);

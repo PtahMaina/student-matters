@@ -14,8 +14,10 @@ const globalErrorHandler = require("./controllers/errorController");
 const userRouter = require("./routes/userRoutes");
 const viewRouter = require("./routes/viewRoutes");
 const specialRouter = require("./routes/specialRoutes");
+const zoteRouter = require("./routes/zoteRoutes");
 const bookingRouter = require("./routes/bookingRoutes");
 const leaveRouter = require("./routes/leaveRoutes");
+const summaryRouter = require("./routes/summaryRoutes");
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -145,9 +147,10 @@ csp.extend(app, {
 
 app.use("/", viewRouter);
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/exams", specialRouter);
+app.use("/api/v1/exams", specialRouter, zoteRouter);
 app.use("/api/v1/bookings", bookingRouter);
 app.use("/api/v1/leaves", leaveRouter);
+app.use("/api/v1/summaries", summaryRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

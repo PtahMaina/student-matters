@@ -49,40 +49,37 @@ export const special = async (
   }
 };
 
-// export const myFunction = () => {
-//   var table = document.getElementById("myTable");
-//   var row = table.insertRow(0);
-//   var cell1 = row.insertCell(0);
-//   var cell2 = row.insertCell(1);
-//   cell1.innerHTML = "NEW CELL1";
-//   cell2.innerHTML = "NEW CELL2";
-// };
+export function addRow() {
+  // create a new table row element
+  var newRow = document.createElement("tr");
+
+  // create cells for the new row and append them to the row
+  var cell1 = document.createElement("td");
+  var cell2 = document.createElement("td");
+  var cell3 = document.createElement("td");
+  newRow.appendChild(cell1);
+  newRow.appendChild(cell2);
+  newRow.appendChild(cell3);
+
+  // add input fields to the cells for capturing data
+  cell1.innerHTML = "<input type='text' name='input'>";
+  cell2.innerHTML = "<input type='text' name='input'>";
+  cell3.innerHTML = "<input type='text' name='input'>";
+
+  // get the existing table and append the new row to it
+  var table = document.getElementById("myTable");
+  table.appendChild(newRow);
+}
 
 export function myFunction() {
-  // Get the table body element in which you want to add row
-  let table = document.getElementById("myTable");
+  const table = document.getElementById("myTable");
+  table.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  // Create row element
-  let row = document.createElement("tr");
-
-  // Create cells
-  let c1 = document.createElement("td");
-  let c2 = document.createElement("td");
-  let c3 = document.createElement("td");
-  let c4 = document.createElement("td");
-
-  // Insert data to cells
-  c1.innerText = "Elon";
-  c2.innerText = "42";
-  c3.innerText = "Houston";
-  c4.innerText = "C++";
-
-  // Append cells to row
-  row.appendChild(c1);
-  row.appendChild(c2);
-  row.appendChild(c3);
-  row.appendChild(c4);
-
-  // Append row to table body
-  table.appendChild(row);
+    const inputs = table.querySelectorAll("input");
+    const data = {};
+    inputs.forEach((input) => {
+      data[input.name] = input.value;
+    });
+  });
 }

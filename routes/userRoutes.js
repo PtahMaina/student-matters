@@ -8,7 +8,10 @@ const router = express.Router();
 router.post("/signup", authController.signup);
 router.post("/login", authController.login);
 router.get("/logout", authController.logout);
-router.post("/staff-login", authController.staffLogin);
+router.post("/admin-login", authController.staffLogin);
+router.post("/cod-login", authController.staffLogin);
+router.post("/dean-login", authController.staffLogin);
+router.post("/dvc-login", authController.staffLogin);
 
 router.post("/forgotPassword", authController.forgotPassword);
 router.patch("/resetPassword/:token", authController.resetPassword);
@@ -27,7 +30,7 @@ router.patch(
 );
 router.delete("/deleteMe", userController.deleteMe);
 
-router.use(authController.restrictTo("admin", "cod", "dean"));
+router.use(authController.restrictTo("admin", "cod", "dean", "dvc"));
 
 router
   .route("/")

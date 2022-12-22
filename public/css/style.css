@@ -54,8 +54,7 @@ button:hover {
   background-color: rgb(119, 119, 119, 0.8);
 }
 
-button3,
-button4 {
+button3 {
   font-family: lato, sans-serif;
   font-weight: 700;
   font-size: 18px;
@@ -66,8 +65,7 @@ button4 {
   font-family: Calibri, Helvetica, sans-serif;
   background-color: rgb(22, 103, 4);
 } */
-button3,
-button4 {
+button3 {
   float: right;
   background-color: rgb(125, 213, 111, 1);
   color: #f1f1f1;
@@ -77,8 +75,7 @@ button4 {
   cursor: pointer;
   transition: all 0.3 ease 0s;
 }
-button3,
-button4:hover {
+button3:hover {
   background-color: rgb(119, 119, 119, 0.8);
 }
 
@@ -456,6 +453,18 @@ h4 {
 
 .special-form,
 .leave-form {
+  margin: 0 auto;
+  max-width: 65rem;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  padding: 5rem 7rem;
+  border-radius: 5px;
+}
+
+.dean-form,
+.admin-form,
+.dvc-form {
   margin: 0 auto;
   max-width: 65rem;
   background-color: #fff;
@@ -997,7 +1006,9 @@ li a:hover {
   color: white;
 }
 
-.buttons1 {
+.buttons1,
+.buttons2,
+.buttons3 {
   display: inline-block;
   padding: 10px 20px;
   text-align: center;

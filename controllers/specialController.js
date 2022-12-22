@@ -26,62 +26,77 @@ exports.special = catchAsync(async (req, res, next) => {
   });
 });
 
-// exports.getAllBookings = catchAsync(async (req, res, next) => {
-//   await Exam.aggregate([
-//     { $match: { department: "CS &IT" } },
-//     { $sort: { regNo: -1 } },
-//     { $project: { _id: 0, regNo: 1, unitCode: 1, unitName: 1 } },
-//   ]).then((response) => {
-//     res.status(200).render("specialList", { Exam })({
-//       response,
-//       title: "All Special Examinations Bookings",
-//       // status: "success",
-//       // results: doc.length,
-//       // data: {
-//       //   data: doc,
-//       // },
-//     });
-//   });
-// });
+exports.special1 = catchAsync(async (req, res, next) => {
+  const newExam = await Exam.create({
+    unitCode: req.body.unitCode,
+    unitName: req.body.unitName,
+    catsAssgnDone: req.body.catsAssgnDone,
+  });
+  res.status(201).json({
+    status: "success",
+    data: {
+      newExam,
+    },
+  });
+});
 
 exports.getForAdmin = catchAsync(async (req, res, next) => {
-  const special = await Exam.aggregate([
+  const specials = await Exam.aggregate([
+    { $match: { matter: "Special Exam Request" } },
+    { $limit: 1 },
+    {
+      $project: {
+        _id: 1,
+        name: 1,
+        regNo: 1,
+        matter: 1,
+        grounds: 1,
+        status: 1,
+      },
+    },
+  ]);
+  // res.status(200).json({ special :specials });
+  res.status(200).render("specialList", { x: specials });
+});
+exports.getForDean = catchAsync(async (req, res, next) => {
+  const specials = await Exam.aggregate([
+    { $match: { status: "pending" } },
+    { $limit: 1 },
     { $sort: { regNo: -1 } },
     {
       $project: {
         _id: 1,
         name: 1,
         regNo: 1,
-        unitCode: 1,
-        unitName: 1,
+        matter: 1,
+        grounds: 1,
         status: 1,
       },
     },
   ]);
-  res.status(200).json({
-    // status: "success",
-    special,
-  });
+  // res.status(200).json({ special :specials });
+  res.status(200).render("dean", { x: specials });
+});
+exports.getForDvc = catchAsync(async (req, res, next) => {
+  const specials = await Exam.aggregate([
+    { $match: { comments: "Approved" } },
+    { $limit: 1 },
+    { $sort: { regNo: -1 } },
+    {
+      $project: {
+        _id: 1,
+        name: 1,
+        regNo: 1,
+        matter: 1,
+        grounds: 1,
+        status: 1,
+      },
+    },
+  ]);
+  // res.status(200).json({ special :specials });
+  res.status(200).render("dvc", { x: specials });
 });
 
 exports.getAllExams = factory.getAll(Exam);
-
-// exports.getAllBookings = catchAsync(async (req, res, next) => {
-//   let data = await Exam.find(
-//     { department: { $regex: "CS &IT" } },
-//     {
-//       group: {
-//         _id: {
-//           unitCode: "$unitCode",
-//           unitName: "$unitName",
-//           appliedAt: "$appliedAt",
-//         },
-//       },
-//     }
-//   );
-//   // data.map((data) => data.regNo, data.unitCode, data.unitName);
-//   res.status(200).json({ status: "success", results: data.length, data });
-//   // res.status(200).render("specialList", data);
-// });
 
 exports.getUnit = factory.getOne(Exam, { path: "regNo" });

@@ -17,6 +17,9 @@ router.post(
 // router.get(authController.protect, specialController.getAllBookings);
 
 router.get("/for-admin", authController.protect, specialController.getForAdmin);
+router.get("/for-cod", authController.protect, specialController.getForAdmin);
+router.get("/for-dean", authController.protect, specialController.getForDean);
+router.get("/for-dvc", authController.protect, specialController.getForDvc);
 
 router.route("/").get(authController.protect, specialController.getAllExams);
 

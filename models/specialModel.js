@@ -45,31 +45,45 @@ const specialSchema = new mongoose.Schema({
       "Please Tell Us When The Month And Year Ordinary Exam Was Done",
     ],
   },
-  unitCode: {
-    type: String,
-    required: [true, "Please Tell Us The Unit Code"],
-  },
-  unitName: {
-    type: String,
-    required: [true, "Please Tell Us The Unit Name"],
-  },
-  catsAssgnDone: {
-    type: String,
-    required: [
-      true,
-      "Please Tell Us How Many Cats And Assignments You Have Done",
-    ],
-  },
+
+  unitCode: [
+    {
+      type: String,
+      required: [true, "Please Tell Us The Unit Code"],
+    },
+  ],
+  unitName: [
+    {
+      type: String,
+      required: [true, "Please Tell Us The Unit Name"],
+    },
+  ],
+  catsAssgnDone: [
+    {
+      type: String,
+      required: [
+        true,
+        "Please Tell Us How Many Cats And Assignments You Have Done",
+      ],
+    },
+  ],
   status: {
     type: String,
-    enum: ["pending", "approved", "disapproved"],
     default: "pending",
+  },
+  matter: {
+    type: String,
+    default: "Special Exam Request",
+  },
+  comments: {
+    type: String,
+    default: "Approved",
   },
   appliedAt: {
     type: Date,
     default: Date.now(),
   },
-  slug: String,
+  // slug: String,
 });
 
 // specialSchema.pre(
@@ -96,10 +110,10 @@ specialSchema.pre(/^find/, function (next) {
 });
 
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
-specialSchema.pre("save", function (next) {
-  this.slug = slugify(this.unitName, { lower: true });
-  next();
-});
+// specialSchema.pre("save", function (next) {
+//   this.slug = slugify(this.unitName, { lower: true });
+//   next();
+// });
 
 const Exam = mongoose.model("Exam", specialSchema);
 

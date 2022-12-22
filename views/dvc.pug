@@ -1,0 +1,32 @@
+extends base
+
+block content
+  .form.dvc-form
+    form.form.form--dvc
+      .content
+        each special in x
+          table
+            thead 
+            tr
+              th Id
+              th name
+              th regNo
+              th matter
+              th Grounds
+              th Dean Recommendation
+              th DvC Comments
+            tbody 
+            tr
+              td #{special._id}
+              td #{special.name}
+              td #{special.regNo}
+              td #{special.matter}
+              td #{special.grounds}
+              td #{special.status}
+              td 
+                input#comments(type='text' required='')
+            
+        .form__group
+          button.btn.btn--green Save
+
+    

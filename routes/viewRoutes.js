@@ -15,7 +15,22 @@ router.get(
   viewsController.getStudentLoginForm
 );
 router.get(
-  "/staff-login",
+  "/admin-login",
+  authController.isLoggedIn,
+  viewsController.getStaffLoginForm
+);
+router.get(
+  "/cod-login",
+  authController.isLoggedIn,
+  viewsController.getStaffLoginForm
+);
+router.get(
+  "/dean-login",
+  authController.isLoggedIn,
+  viewsController.getStaffLoginForm
+);
+router.get(
+  "/dvc-login",
   authController.isLoggedIn,
   viewsController.getStaffLoginForm
 );

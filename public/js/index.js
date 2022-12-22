@@ -1,10 +1,12 @@
 import "@babel/polyfill";
 import { login, logout } from "./login";
 import { signup } from "./signup";
-import { myFunction, special } from "./special";
+import { addRow, myFunction, special } from "./special";
 import { updateSettings } from "./updateSettings";
 import { approve } from "./approve";
 import { leave } from "./leave";
+import { admin, dean, dvc } from "./zote";
+// const special1 = require("special1");
 
 //DOM ELEMENTS
 const loginForm = document.querySelector(".login-form");
@@ -19,7 +21,10 @@ const leaveForm = document.querySelector(".form--leave");
 const approveBtn = document.querySelector(".button4");
 const loginStudent = document.querySelector(".button1");
 const loginStaff = document.querySelector(".button2");
-const buttonRow = document.querySelector(".button3");
+const adminForm = document.querySelector(".form--admin");
+const deanForm = document.querySelector(".form--dean");
+const dvcForm = document.querySelector(".form--dvc");
+const addRowBtn = document.getElementById("addRowBtn");
 const table = document.getElementById("myTable");
 
 // //DELEGATION
@@ -77,6 +82,11 @@ if (specialForm) {
     const unitCode = document.getElementById("unitCode").value;
     const unitName = document.getElementById("unitName").value;
     const catsAssgnDone = document.getElementById("catsAssgnDone").value;
+    const inputs = table.querySelectorAll("input");
+    const data = {};
+    inputs.forEach((input) => {
+      data[input.name] = input.value;
+    });
     special(
       name,
       regNo,
@@ -88,11 +98,12 @@ if (specialForm) {
       monthYear,
       unitCode,
       unitName,
-      catsAssgnDone
+      catsAssgnDone,
+      inputs,
+      data
     );
   });
 }
-
 if (userDataForm)
   userDataForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -151,7 +162,36 @@ if (leaveForm) {
     );
   });
 }
-
 // if (approveBtn) approveBtn.addEventListener("click", approve);
 
-if (buttonRow) buttonRow.addEventListener("click", myFunction);
+if (addRowBtn) {
+  addRowBtn.addEventListener("click", addRow);
+}
+
+// document.getElementById("addRowBtn").onclick = addRow;
+
+// if (addRowBtn) addRowBtn.addEventListener("click", addRow);
+
+if (adminForm) {
+  adminForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const matter = document.getElementById("matter").value;
+    admin(matter);
+  });
+}
+
+if (deanForm) {
+  deanForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const status = document.getElementById("status").value;
+    dean(status);
+  });
+}
+
+if (dvcForm) {
+  dvcForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const comments = document.getElementById("comments").value;
+    dvc(comments);
+  });
+}

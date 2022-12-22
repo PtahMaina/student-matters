@@ -1,19 +1,29 @@
 extends base
 
 block content
- .content
-  table
-    tr
-      th Id
-      th name
-      th regNo
-      th unit code
-      th unit name
-      th status
-    tr
-      td #{exam._id}
-      td #{exam.name}
-      td #{exam.regNo}
-      td #{exam.unitCode}
-      td #{exam.unitName}
-      td #{exam.status}
+  .form.admin-form
+    form.form.form--admin
+      .content
+        each special in x
+          table
+            thead 
+            tr
+              th Id
+              th name
+              th regNo
+              th matter
+              th Grounds
+            tbody 
+            tr
+              td #{special._id}
+              td #{special.name}
+              td #{special.regNo}
+              td 
+                input#matter(type='text' required='')
+              td #{special.grounds}
+              
+        .form__group
+            button.btn.btn--green Submit
+
+
+    

@@ -20,5 +20,12 @@ block content
                     .dropdown-content
                         a(href='#')  Request Transfer 
             - if (user.role === 'admin')
-                a.buttons1(href='/api/v1/exams/for-admin') Show Specials
-                a.buttons1(href='/api/v1/exams') Show Specials
+                a.buttons1(href='/api/v1/exams/for-admin') Show Matters
+            - if (user.role === 'cod')
+                a.buttons1(href='/api/v1/exams/for-admin') Show Matters
+            - if (user.role === 'dean')
+                a.buttons1(href='/api/v1/exams/for-dean') Show Matters
+            - if (user.role === 'dvc')
+                a.buttons1(href='/api/v1/exams/for-dvc') Show Matters
+            
+                
